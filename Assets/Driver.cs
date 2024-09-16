@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-   [SerializeField] float steerSpeed = 0.1f;
+   [SerializeField] float steerSpeed = 0.5f;
    [SerializeField] float moveSpeed = 0.01f;
     // Start is called before the first frame update
     void Start()
@@ -15,7 +15,9 @@ public class NewBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, 0,steerSpeed);
-        transform.Translate(0, moveSpeed, 0);
+        float steerAmount = Input.GetAxis("Horizontal") * steerSpeed;
+        float moveAmount = Input.GetAxis("Vertical") * moveSpeed;
+        transform.Rotate(0, 0, -steerAmount);
+        transform.Translate(0, moveAmount, 0);
     }
 }
